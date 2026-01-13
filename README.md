@@ -1,5 +1,5 @@
 # Quote-App
-Quote App to generate random quotes.
+Quote App is a web application designed to provide users with random quote inspirations.
 
 ## Description
 Coming soon...
