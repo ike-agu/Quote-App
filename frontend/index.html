@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quote App</title>
   <script defer src="quoteApi.js"></script>
 </head>
+
 <body>
   <div class="container">
     <h1>Random Quote App</h1>
@@ -19,21 +21,24 @@
   </section>
 
   <section class="card">
-    <form action="" id="add-quote">
+    <form action="" id="add-quote-form">
       <h2>Add a quote</h2>
       <label for="">
-        Author:
-        <input type="text" required>
+        Quote:
+        <input type="text" id="quote-input" required>
       </label>
       <br /><br />
       <label for="">
-        <textarea name="add-quote" id="author-inpu" rows="4" cols="50" required placeholder="Enter quote here..."></textarea>
+        Author:
+        <input type="text" id="author-input" required>
       </label>
       <br /><br />
-      <button type="submit" class="submit-btn"> Add quote </button>
+
+      <button type="submit" id="submit-btn"> Add quote </button>
       <p id="message"></p>
     </form>
   </section>
 
 </body>
+
 </html>
