@@ -1,7 +1,7 @@
-import express from "express"
-import cors from "cors"
+import express from "express";
+import cors from "cors";
 
-const app = express()
+const app = express();
 const port = 3000;
 
 app.use(cors());
@@ -20,31 +20,46 @@ const quotes = [
 ];
 
 function pickRandomQuote() {
-  const index = Math.floor(Math.random() * quotes.length );
-  return quotes[index]
-};
+  const index = Math.floor(Math.random() * quotes.length);
+  return quotes[index];
+}
 
 app.get("/", (req, res) => {
   res.send("Quote API is running. Try GET /quote");
 });
 
-app.get("/quote", (req, res) =>{
+app.get("/quote", (req, res) => {
   console.error("Received a request for a quote");
   const quote = pickRandomQuote();
-  res.json(quote)
-})
+  res.json(quote);
+});
+
+// ====POST METHOD=============
 
 app.post("/quote", (req, res) => {
   const body = req.body;
-
-  if(!body || typeof body !== "object" || !body.quote || !body.author ){
-    res.status(400).json({ error: "Expected body to be a JSON object containing keys quote and author."});
+  //basic validation to check body exist and is and object.
+  if (!body || typeof body !== "object" || !body.quote || !body.author) {
+    res.status(400).json({ error: "Expected body to be a JSON object" });
     return;
   }
-  quotes.push({quote:body.quote, author: body.author})
-  res.json({status: "ok"})
-})
 
-app.listen(port, () =>{
-  console.log(`Quote server listening on port ${port}`)
-})
+  const quote = String(body.quote || "").trim();
+  const author = String(body.author || "").trim();
+
+  if (!quote) {
+    return res.status(400).json({ error: "Quote cannot be empty." });
+  }
+
+  if (!author) {
+    return res.status(400).json({ error: "Author cannot be empty." });
+  }
+
+  quotes.push({ quote, author });
+  return res.status(201).json({ status: "ok", saved: { quote, author } });
+});
+
+// ====PORT LISTENING=============
+app.listen(port, () => {
+  console.log(`Quote server listening on port ${port}`);
+});
