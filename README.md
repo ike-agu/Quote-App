@@ -37,3 +37,7 @@ If you have another Docker container running:
 If you need to keep your existing server running on port 3000, you can tell Docker to map a different port on your Mac (like 3001) to port 3000 inside the container:
 
 - docker run -it --rm -p 3001:3000 test-build
+
+
+## When running locally:
+  Note: the "New quote" fetch will fail with Could not load quote unless the backend server is also running on 127.0.0.1:3000
