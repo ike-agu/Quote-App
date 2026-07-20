@@ -38,6 +38,5 @@ If you need to keep your existing server running on port 3000, you can tell Dock
 
 - docker run -it --rm -p 3001:3000 test-build
 
-
 ## When running locally:
   Note: the "New quote" fetch will fail with Could not load quote unless the backend server is also running on 127.0.0.1:3000
